@@ -29,20 +29,24 @@ public class Library
         return  (ArrayList)this.books;
     }
 
-    public ArrayList putDvds(List<Dvd> dvds,int hour){
+    public ArrayList putDvds(List<Dvd> listdvds,int hour){
         this.hour = hour;
-        this.STOCK_DVD = this.STOCK_DVD  + dvds.size();
+        this.STOCK_DVD = this.STOCK_DVD  + listdvds.size();
         if(this.isOpen(this.hour)){
             if( this.STOCK_DVD >= this.MAX_DVD) return null;
 
-            for(int i=0;i<this.dvds.size();i++){
-                if(dvds.contains(this.dvds.get(i))) return null;
+            for(int i=0;i<listdvds.size();i++){
+                if(this.dvds.contains(listdvds.get(i))) return null;
+                else addDVD(listdvds.get(i));
             }
-        this.dvds.addAll(dvds);
         return (ArrayList)this.dvds;
         }
         else return null;
     }
+
+   public void addDVD(Dvd dvd) {
+       this.dvds.add(dvd);
+   }
 
     boolean isOpen(int hour) {
         this.hour = hour;
